@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
-from globals import batch_duration
+from code.globals import batch_duration
 
 
 def start_driver(headless):

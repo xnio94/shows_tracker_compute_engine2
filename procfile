@@ -1,0 +1,2 @@
+hello: /opt/app/env/bin/python main.py
+

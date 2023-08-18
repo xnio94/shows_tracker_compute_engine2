@@ -80,8 +80,6 @@ shows = [
     "https://www.snapchat.com/p/31355a0d-da7a-4bcb-8ad1-fbf4775b3104/2556659483140096",
     "https://story.snapchat.com/p/fef98314-225d-4718-acb7-16fff1e10576/917270960945152",
 ]
-
-
 # def get_video(link): take episode link and return download link
 
 current_batch = []

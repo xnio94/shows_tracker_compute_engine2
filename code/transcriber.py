@@ -1,7 +1,9 @@
 import openai
 import requests
+import os
 
-API_KEY = ""
+API_KEY = os.environ["OPENAI_API_KEY"]
+
 openai.api_key = API_KEY
 
 def transcribe_audio(url):

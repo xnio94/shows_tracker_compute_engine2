@@ -14,7 +14,7 @@
 import json
 import time
 
-from code.download import get_video
+# from code.download import get_video
 from code.selinuim import start_driver, scroll_to_end, get_last_episode_data
 from code.globals import minute, batch_duration
 
@@ -47,7 +47,7 @@ from code.globals import minute, batch_duration
 # if __name__ == '__main__':
 #     app.run(host='127.0.0.1', port=8080, debug=True)
 from code.send_email import send_email
-from code.transcriber import transcribe_audio
+# from code.transcriber import transcribe_audio
 
 driver = start_driver(headless=True)
 show = "https://www.snapchat.com/p/f4814d0b-4f59-45e1-9d32-8f705f6544db/2407097341865984"

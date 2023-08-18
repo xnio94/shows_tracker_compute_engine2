@@ -26,7 +26,7 @@ sudo supervisorctl start pythonapp
 
 
 
-sudo -u pythonapp sh -c 'echo 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 > OPENAI_API_KEY'
+sudo -u pythonapp sh -c 'echo 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> OPENAI_API_KEY'
 
 
 

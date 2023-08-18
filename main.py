@@ -124,6 +124,7 @@ while(True):
     }
 
     data = json.dumps(data)
+
     print(data)
     time.sleep(1)
 

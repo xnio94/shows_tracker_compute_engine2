@@ -2,7 +2,11 @@ import openai
 import requests
 import os
 
-API_KEY = os.environ["OPENAI_API_KEY"]
+API_KEY = ""
+
+with open('OPENAI_API_KEY', 'r') as file:
+    API_KEY = file.readline().strip()
+
 
 openai.api_key = API_KEY
 

@@ -85,11 +85,9 @@ shows = [
 
 current_batch = []
 for i in range(4):
-    send_email("episode_link", "transcript", "title", "poster")
-
     last_batch = current_batch
     current_batch = []
-    for show in shows[-5:]:
+    for show in shows:
         driver.get(show)
         scroll_to_end(driver)
         episode_link, title, poster, time_posted = get_last_episode_data(driver, minute=minute)

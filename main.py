@@ -127,4 +127,4 @@ while(True):
     print(data)
     time.sleep(1)
 
-    send_email("episode_link", "transcript", "title", "poster")
+    send_email(episode_link, "transcript"+ str(time_posted), title, poster)

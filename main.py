@@ -91,12 +91,15 @@ for i in range(4):
 
     last_batch = current_batch
     current_batch = []
-    for show in shows[-5:]:
+    for show in shows:
         pri(f"show = {show}")
         driver.get(show)
         scroll_to_end(driver)
         episode_link, title, poster, time_posted = get_last_episode_data(driver, minute=minute)
-        print(title, "\n", time_posted)
+        pri(f"episode_link = {episode_link}")
+        pri(f"title = {title}")
+        pri(f"poster = {poster}")
+        pri(f"time_posted = {time_posted}")
         if episode_link != '' :
             if episode_link not in (current_batch + last_batch):
                 current_batch.append(episode_link)

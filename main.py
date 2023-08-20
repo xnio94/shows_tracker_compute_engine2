@@ -16,7 +16,7 @@ import time
 
 from code.download import get_video
 from code.selinuim import start_driver, scroll_to_end, get_last_episode_data
-from code.globals import minute, batch_duration
+from code.globals import minute, batch_duration, pri
 
 # from flask import Flask
 #
@@ -55,7 +55,7 @@ show = "https://www.snapchat.com/p/f4814d0b-4f59-45e1-9d32-8f705f6544db/24070973
 
 
 def process(episode_link, title, poster):
-    print(f"processing episode : {episode_link}")
+    pri(f"processing episode : {episode_link}")
     video_url, audio_url = get_video(episode_link)
     transcript = transcribe_audio(audio_url)
     send_email(episode_link, transcript, title, poster)
@@ -84,10 +84,15 @@ shows = [
 # def get_video(link): take episode link and return download link
 
 current_batch = []
+pri("start")
 for i in range(4):
+    pri(f"i = {i}")
+    # send_email("episode_link", "transcript", "title", "poster")
+
     last_batch = current_batch
     current_batch = []
-    for show in shows:
+    for show in shows[-5:]:
+        pri(f"show = {show}")
         driver.get(show)
         scroll_to_end(driver)
         episode_link, title, poster, time_posted = get_last_episode_data(driver, minute=minute)
@@ -96,7 +101,7 @@ for i in range(4):
             if episode_link not in (current_batch + last_batch):
                 current_batch.append(episode_link)
                 process(episode_link, title, poster)
-        print("################")
+        pri("################")
     #
     # time.sleep(batch_duration*60)
 

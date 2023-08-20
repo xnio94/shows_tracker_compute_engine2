@@ -66,12 +66,14 @@ shows = [
     "https://story.snapchat.com/p/7fb3463b-7ec8-47a1-8a99-18577e7f8231",
     "https://www.snapchat.com/p/8b8ceb94-9e29-4ec0-b1de-33753754c969/2548940717385728",
     "https://www.snapchat.com/p/86dba8a2-357c-4f69-8da4-0dd6b9d1c733/2556652314200064",
-    "https://www.snapchat.com/p/9aaa3c37-04e5-4caa-a94e-e84ee4ce1c28/3225144193988608",
+    "https://www.snapchat.com/p/9aaa3c37-04e5-4caa-a94e-e84ee4ce1c28/3225144193988608",##
     "https://www.snapchat.com/p/e6dd5e6d-e78f-418e-acb9-7ae390cfcc29/760047972395008",
     "https://story.snapchat.com/p/9435544a-2473-4fde-a379-e34da381dc73",
+    "https://www.snapchat.com/p/39a22569-b304-487a-8d9d-1f4606748dcd/1534107123281920",##
     "https://story.snapchat.com/p/71c666da-d7ba-41f0-8c53-dab6348bf9f6",
     "https://story.snapchat.com/p/e3c883e5-c9cf-4322-858b-785dcfa6d824",
     "https://story.snapchat.com/p/e3b64bf3-709d-46e6-82bb-f4f901e311e8",
+    "https://www.snapchat.com/p/1414bd81-a92c-485c-be58-3824cd40fd3c/1534107472195584",##
     "https://www.snapchat.com/p/e6492ed0-1aec-42d6-a765-3eb9011decb4",
     "https://story.snapchat.com/p/3b16948a-97ac-4c52-a546-263de3a33b56",
     "https://www.snapchat.com/p/0d9559c7-2cff-4a45-9293-b46c64df3b25/1436225626333184",

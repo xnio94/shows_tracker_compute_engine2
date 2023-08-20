@@ -48,10 +48,28 @@ from code.globals import minute, batch_duration, pri
 #     app.run(host='127.0.0.1', port=8080, debug=True)
 from code.send_email import send_email
 from code.transcriber import transcribe_audio
+import firebase_admin
+from firebase_admin import firestore
+firebase_admin.initialize_app()
+db = firestore.client()
+def get_shows_from_firestore():
+    # Reference to your Firestore document
+    doc_ref = db.collection('shows').document('shows')  # replace with your collection name and document ID
+
+    # Fetch the document
+    doc = doc_ref.get()
+
+    # Check if the document exists
+    if doc.exists:
+        shows = doc.to_dict().get('shows', [])
+        return shows
+    else:
+        print('No such document!')
+        return []
+
+
 
 driver = start_driver(headless=True)
-show = "https://www.snapchat.com/p/f4814d0b-4f59-45e1-9d32-8f705f6544db/2407097341865984"
-
 
 
 def process(episode_link, title, poster):
@@ -61,33 +79,36 @@ def process(episode_link, title, poster):
     send_email(episode_link, transcript, title, poster)
     # send_email(text, title, poster)
 
-shows = [
-    "https://www.snapchat.com/p/f4814d0b-4f59-45e1-9d32-8f705f6544db/2407097341865984",
-    "https://story.snapchat.com/p/7fb3463b-7ec8-47a1-8a99-18577e7f8231",
-    "https://www.snapchat.com/p/8b8ceb94-9e29-4ec0-b1de-33753754c969/2548940717385728",
-    "https://www.snapchat.com/p/86dba8a2-357c-4f69-8da4-0dd6b9d1c733/2556652314200064",
-    "https://www.snapchat.com/p/9aaa3c37-04e5-4caa-a94e-e84ee4ce1c28/3225144193988608",##
-    "https://www.snapchat.com/p/e6dd5e6d-e78f-418e-acb9-7ae390cfcc29/760047972395008",
-    "https://story.snapchat.com/p/9435544a-2473-4fde-a379-e34da381dc73",
-    "https://www.snapchat.com/p/39a22569-b304-487a-8d9d-1f4606748dcd/1534107123281920",##
-    "https://story.snapchat.com/p/71c666da-d7ba-41f0-8c53-dab6348bf9f6",
-    "https://story.snapchat.com/p/e3c883e5-c9cf-4322-858b-785dcfa6d824",
-    "https://story.snapchat.com/p/e3b64bf3-709d-46e6-82bb-f4f901e311e8",
-    "https://www.snapchat.com/p/1414bd81-a92c-485c-be58-3824cd40fd3c/1534107472195584",##
-    "https://www.snapchat.com/p/e6492ed0-1aec-42d6-a765-3eb9011decb4",
-    "https://story.snapchat.com/p/3b16948a-97ac-4c52-a546-263de3a33b56",
-    "https://www.snapchat.com/p/0d9559c7-2cff-4a45-9293-b46c64df3b25/1436225626333184",
-    "https://www.snapchat.com/p/7da4a6d1-c124-4ab0-a00f-d0c7986b2c9c/2556657579313152",
-    "https://www.snapchat.com/p/ca4af9b0-1ec5-42b3-acd1-9775f0b0f8fd/760057326614528",
-    "https://www.snapchat.com/p/139305d0-62fd-4e70-aca1-04e6b35e40e3/2407087524593664",
-    "https://story.snapchat.com/p/7de29ce9-ca30-4867-a021-31e2109655f8/1436230316457984",
-    "https://www.snapchat.com/p/31355a0d-da7a-4bcb-8ad1-fbf4775b3104/2556659483140096",
-    "https://story.snapchat.com/p/fef98314-225d-4718-acb7-16fff1e10576/917270960945152",
-]
-# def get_video(link): take episode link and return download link
+# shows = [
+#     "https://www.snapchat.com/p/f4814d0b-4f59-45e1-9d32-8f705f6544db/2407097341865984",
+#     "https://story.snapchat.com/p/7fb3463b-7ec8-47a1-8a99-18577e7f8231",
+#     "https://www.snapchat.com/p/8b8ceb94-9e29-4ec0-b1de-33753754c969/2548940717385728",
+#     "https://www.snapchat.com/p/86dba8a2-357c-4f69-8da4-0dd6b9d1c733/2556652314200064",
+#     "https://www.snapchat.com/p/9aaa3c37-04e5-4caa-a94e-e84ee4ce1c28/3225144193988608",##
+#     "https://www.snapchat.com/p/e6dd5e6d-e78f-418e-acb9-7ae390cfcc29/760047972395008",
+#     "https://story.snapchat.com/p/9435544a-2473-4fde-a379-e34da381dc73",
+#     "https://www.snapchat.com/p/39a22569-b304-487a-8d9d-1f4606748dcd/1534107123281920",##
+#     "https://story.snapchat.com/p/71c666da-d7ba-41f0-8c53-dab6348bf9f6",
+#     "https://story.snapchat.com/p/e3c883e5-c9cf-4322-858b-785dcfa6d824",
+#     "https://story.snapchat.com/p/e3b64bf3-709d-46e6-82bb-f4f901e311e8",
+#     "https://www.snapchat.com/p/1414bd81-a92c-485c-be58-3824cd40fd3c/1534107472195584",##
+#     "https://www.snapchat.com/p/e6492ed0-1aec-42d6-a765-3eb9011decb4",
+#     "https://story.snapchat.com/p/3b16948a-97ac-4c52-a546-263de3a33b56",
+#     "https://www.snapchat.com/p/0d9559c7-2cff-4a45-9293-b46c64df3b25/1436225626333184",
+#     "https://www.snapchat.com/p/7da4a6d1-c124-4ab0-a00f-d0c7986b2c9c/2556657579313152",
+#     "https://www.snapchat.com/p/ca4af9b0-1ec5-42b3-acd1-9775f0b0f8fd/760057326614528",
+#     "https://www.snapchat.com/p/139305d0-62fd-4e70-aca1-04e6b35e40e3/2407087524593664",
+#     "https://story.snapchat.com/p/7de29ce9-ca30-4867-a021-31e2109655f8/1436230316457984",
+#     "https://www.snapchat.com/p/31355a0d-da7a-4bcb-8ad1-fbf4775b3104/2556659483140096",
+#     "https://story.snapchat.com/p/fef98314-225d-4718-acb7-16fff1e10576/917270960945152",
+# ]
+#
+
+shows = get_shows_from_firestore()
 
 current_batch = []
 pri("start")
+pri(len(shows))
 for i in range(4):
     pri(f"i = {i}")
     # send_email("episode_link", "transcript", "title", "poster")

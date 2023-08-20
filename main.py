@@ -66,6 +66,7 @@ shows = [
     "https://story.snapchat.com/p/7fb3463b-7ec8-47a1-8a99-18577e7f8231",
     "https://www.snapchat.com/p/8b8ceb94-9e29-4ec0-b1de-33753754c969/2548940717385728",
     "https://www.snapchat.com/p/86dba8a2-357c-4f69-8da4-0dd6b9d1c733/2556652314200064",
+    "https://www.snapchat.com/p/9aaa3c37-04e5-4caa-a94e-e84ee4ce1c28/3225144193988608",
     "https://www.snapchat.com/p/e6dd5e6d-e78f-418e-acb9-7ae390cfcc29/760047972395008",
     "https://story.snapchat.com/p/9435544a-2473-4fde-a379-e34da381dc73",
     "https://story.snapchat.com/p/71c666da-d7ba-41f0-8c53-dab6348bf9f6",

@@ -4,7 +4,7 @@ import os
 
 API_KEY = ""
 
-with open('OPENAI_API_KEY', 'r') as file:
+with open('openai_key', 'r') as file:
     API_KEY = file.readline().strip()
 
 

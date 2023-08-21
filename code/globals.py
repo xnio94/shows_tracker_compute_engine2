@@ -3,7 +3,7 @@ import textwrap
 
 def pri(s):
     with open('/opt/app/logs', 'a') as f:
-        f.write(s + '\n')
+        f.write(str(s) + '\n')
     print(s)
 
 def pri2(s):

@@ -49,8 +49,14 @@ from code.globals import minute, batch_duration, pri
 from code.send_email import send_email
 from code.transcriber import transcribe_audio
 import firebase_admin
-from firebase_admin import firestore
-firebase_admin.initialize_app()
+from firebase_admin import credentials, firestore
+pri("ok")
+cred = credentials.Certificate('0.json') # replace with your service account key path
+pri("ok2")
+pri(cred)
+firebase_admin.initialize_app(cred)
+pri("ok3")
+# firebase_admin.initialize_app()
 db = firestore.client()
 def get_shows_from_firestore():
     # Reference to your Firestore document
@@ -66,8 +72,6 @@ def get_shows_from_firestore():
     else:
         print('No such document!')
         return []
-
-
 
 driver = start_driver(headless=True)
 

@@ -54,6 +54,8 @@ pri("ok")
 cred = credentials.Certificate('0.json') # replace with your service account key path
 pri("ok2")
 pri(cred)
+pri("ok22")
+
 firebase_admin.initialize_app(cred)
 pri("ok3")
 # firebase_admin.initialize_app()

@@ -50,15 +50,12 @@ from code.send_email import send_email
 from code.transcriber import transcribe_audio
 import firebase_admin
 from firebase_admin import credentials, firestore
-pri("ok")
-cred = credentials.Certificate('0.json') # replace with your service account key path
+pri("ok1")
+cred = credentials.Certificate('0.json')  # replace with your service account key path
 pri("ok2")
 pri(cred)
-pri("ok22")
-
 firebase_admin.initialize_app(cred)
 pri("ok3")
-# firebase_admin.initialize_app()
 db = firestore.client()
 def get_shows_from_firestore():
     # Reference to your Firestore document
@@ -74,8 +71,6 @@ def get_shows_from_firestore():
     else:
         print('No such document!')
         return []
-
-driver = start_driver(headless=True)
 
 
 def process(episode_link, title, poster):
@@ -120,6 +115,8 @@ while True:
     i = (i+1) % 10000
     pri(f"i = {i}")
     # send_email("episode_link", "transcript", "title", "poster")
+    driver = start_driver(headless=True)
+
     shows = get_shows_from_firestore()
     pri("start batch")
     pri(len(shows))
@@ -141,6 +138,8 @@ while True:
                 process(episode_link, title, poster)
         pri("################")
     #
+
+    driver.quit()
     processing_time = 4*len(shows)
     time.sleep(batch_duration*60 - processing_time)
 

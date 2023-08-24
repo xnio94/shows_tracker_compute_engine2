@@ -120,6 +120,9 @@ while True:
     i = (i+1) % 10000
     pri(f"i = {i}")
     # send_email("episode_link", "transcript", "title", "poster")
+    shows = get_shows_from_firestore()
+    pri("start batch")
+    pri(len(shows))
 
     last_batch = current_batch
     current_batch = []
@@ -138,7 +141,8 @@ while True:
                 process(episode_link, title, poster)
         pri("################")
     #
-    time.sleep(batch_duration*60-60)
+    processing_time = 4*len(shows)
+    time.sleep(batch_duration*60 - processing_time)
 
 
 

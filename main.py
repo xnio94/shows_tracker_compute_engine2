@@ -136,7 +136,7 @@ for i in range(4):
                 process(episode_link, title, poster)
         pri("################")
     #
-    time.sleep(batch_duration*60)
+    time.sleep(batch_duration*60-60)
 
 
 

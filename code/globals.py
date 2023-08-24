@@ -13,5 +13,5 @@ def pri2(s):
     print('\n'.join(textwrap.wrap(s, 170)))
 
 
-batch_duration = 9  # need to be < 10
+batch_duration = 5 # need to be < 10
 minute = "m"

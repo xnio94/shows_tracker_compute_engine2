@@ -115,7 +115,9 @@ shows = get_shows_from_firestore()
 current_batch = []
 pri("start")
 pri(len(shows))
-for i in range(4):
+i = 0
+while True:
+    i = (i+1) % 10000
     pri(f"i = {i}")
     # send_email("episode_link", "transcript", "title", "poster")
 

@@ -82,7 +82,7 @@ def get_last_episode_data(driver, minute='m'):
         title = last_element.find_element(By.CSS_SELECTOR, '.StoryListTile_title__uu0Lo.StoryListTile_oneLineTruncation__llTh3')
         title = title.text
 
-        if time_posted[0].isdigit() and int(time_posted[0]) <= batch_duration and time_posted[1]== minute:
+        if time_posted[0].isdigit() and int(time_posted[0]) <= batch_duration and time_posted[1] == minute:
             last_element.click()
             time.sleep(2)
             poster = driver.find_element(By.CLASS_NAME, "StoryWebPlayer_videoPlayer__ISmZ6")

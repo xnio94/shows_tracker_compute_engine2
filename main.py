@@ -130,13 +130,13 @@ for i in range(4):
         pri(f"title = {title}")
         pri(f"poster = {poster}")
         pri(f"time_posted = {time_posted}")
-        if episode_link != '' :
+        if episode_link != '':
             if episode_link not in (current_batch + last_batch):
                 current_batch.append(episode_link)
                 process(episode_link, title, poster)
         pri("################")
     #
-    # time.sleep(batch_duration*60)
+    time.sleep(batch_duration*60)
 
 
 

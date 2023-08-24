@@ -14,4 +14,4 @@ def pri2(s):
 
 
 batch_duration = 9  # need to be < 10
-minute = "h"
+minute = "m"

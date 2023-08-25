@@ -123,13 +123,9 @@ while True:
     # last_batch = current_batch
     # current_batch = []
     for show in shows:
-        pri(f"show = {show}")
         driver.get(show)
-        pri("1")
         scroll_to_end(driver)
-        pri("2")
         episode_link, title, poster, time_posted = get_last_episode_data(driver, minute=minute)
-        pri("3")
         pri(f"{show}  --  {time_posted}")
         if episode_link != '':
             pri(f"episode_link = {episode_link}")
@@ -137,9 +133,11 @@ while True:
                 current_batch.append(episode_link)
                 process(episode_link, title, poster)
         pri("################")
-        pri(f"current_batch = {current_batch}")
-        pri(f"last_batch = {last_batch}")
-        pri("################")
+
+    pri("################")
+    pri(f"current_batch = {current_batch}")
+    pri(f"last_batch = {last_batch}")
+    pri("################")
 
     #
     driver.quit()

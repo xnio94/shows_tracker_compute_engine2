@@ -123,22 +123,22 @@ while True:
     # last_batch = current_batch
     # current_batch = []
     for show in shows:
-        print(f"show = {show}")
+        pri(f"show = {show}")
         driver.get(show)
-        print("1")
+        pri("1")
         scroll_to_end(driver)
-        print("2")
+        pri("2")
         episode_link, title, poster, time_posted = get_last_episode_data(driver, minute=minute)
-        print("3")
-        print(f"{show}  --  {time_posted}")
+        pri("3")
+        pri(f"{show}  --  {time_posted}")
         if episode_link != '':
             pri(f"episode_link = {episode_link}")
             if episode_link not in (current_batch + last_batch):
                 current_batch.append(episode_link)
                 process(episode_link, title, poster)
         pri("################")
-        print(f"current_batch = {current_batch}")
-        print(f"last_batch = {last_batch}")
+        pri(f"current_batch = {current_batch}")
+        pri(f"last_batch = {last_batch}")
         pri("################")
 
     #

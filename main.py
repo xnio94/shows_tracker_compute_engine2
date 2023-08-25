@@ -123,9 +123,13 @@ while True:
     # last_batch = current_batch
     # current_batch = []
     for show in shows:
+        print(f"show = {show}")
         driver.get(show)
+        print("1")
         scroll_to_end(driver)
+        print("2")
         episode_link, title, poster, time_posted = get_last_episode_data(driver, minute=minute)
+        print("3")
         print(f"{show}  --  {time_posted}")
         if episode_link != '':
             pri(f"episode_link = {episode_link}")

@@ -16,7 +16,7 @@ import time
 
 from code.download import get_video
 from code.selinuim import start_driver, scroll_to_end, get_last_episode_data
-from code.globals import minute, batch_duration, pri
+from code.globals import minute, batch_duration, pri, n_hours
 
 # from flask import Flask
 #
@@ -111,37 +111,42 @@ current_batch = []
 pri("start")
 pri(len(shows))
 i = 0
+start_time = time.time()
 while True:
     i = (i+1) % 10000
     pri(f"i = {i}")
     # send_email("episode_link", "transcript", "title", "poster")
     driver = start_driver(headless=True)
-
     shows = get_shows_from_firestore()
     pri("start batch")
     pri(len(shows))
-
-    last_batch = current_batch
-    current_batch = []
+    # last_batch = current_batch
+    # current_batch = []
     for show in shows:
-        pri(f"show = {show}")
         driver.get(show)
         scroll_to_end(driver)
         episode_link, title, poster, time_posted = get_last_episode_data(driver, minute=minute)
-        pri(f"episode_link = {episode_link}")
-        pri(f"title = {title}")
-        pri(f"poster = {poster}")
-        pri(f"time_posted = {time_posted}")
+        print(f"{show}  --  {time_posted}")
         if episode_link != '':
+            pri(f"episode_link = {episode_link}")
             if episode_link not in (current_batch + last_batch):
                 current_batch.append(episode_link)
                 process(episode_link, title, poster)
         pri("################")
-    #
+        print(f"current_batch = {current_batch}")
+        print(f"last_batch = {last_batch}")
+        pri("################")
 
+    #
     driver.quit()
-    processing_time = 4*len(shows)
-    time.sleep(batch_duration*60 - processing_time)
+    # processing_time = 4*len(shows)
+    # time.sleep(batch_duration*60 - processing_time)
+    end_time = time.time()
+    if (end_time - start_time) > (n_hours*3600+60):
+        last_batch = current_batch
+        current_batch = []
+        start_time = time.time()
+
 
 
 

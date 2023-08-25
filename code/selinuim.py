@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
-from code.globals import batch_duration
+from code.globals import batch_duration, n_hours
 
 
 def start_driver(headless):
@@ -82,7 +82,20 @@ def get_last_episode_data(driver, minute='m'):
         title = last_element.find_element(By.CSS_SELECTOR, '.StoryListTile_title__uu0Lo.StoryListTile_oneLineTruncation__llTh3')
         title = title.text
 
-        if time_posted[0].isdigit() and int(time_posted[0]) <= batch_duration and time_posted[1] == minute:
+        # if time_posted[0].isdigit() and int(time_posted[0]) <= batch_duration and time_posted[1] == minute:
+        #     last_element.click()
+        #     time.sleep(2)
+        #     poster = driver.find_element(By.CLASS_NAME, "StoryWebPlayer_videoPlayer__ISmZ6")
+        #     poster = poster.get_attribute("poster")
+        #     return driver.current_url, title, poster, time_posted
+        # else:
+        #     return "", title, "", time_posted
+        new = (
+                (time_posted[0].isdigit() and time_posted[1] == 'm') or
+                (time_posted[0].isdigit() and time_posted[1].isdigit() and time_posted[2] == 'm') or
+                (time_posted[0].isdigit() and int(time_posted[0]) < n_hours and time_posted[1] == 'h')
+        )
+        if new:
             last_element.click()
             time.sleep(2)
             poster = driver.find_element(By.CLASS_NAME, "StoryWebPlayer_videoPlayer__ISmZ6")
@@ -90,6 +103,10 @@ def get_last_episode_data(driver, minute='m'):
             return driver.current_url, title, poster, time_posted
         else:
             return "", title, "", time_posted
+        ################################################
+
+
+
     except Exception as e:
         print(e)
         return "", "", "", ""

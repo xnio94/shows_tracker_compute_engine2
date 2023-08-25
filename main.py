@@ -110,10 +110,8 @@ shows = get_shows_from_firestore()
 current_batch = []
 last_batch = []
 pri("start")
-pri(len(shows))
 i = 0
 start_time = time.time()
-
 while True:
     i = (i+1) % 10000
     pri(f"i = {i}")

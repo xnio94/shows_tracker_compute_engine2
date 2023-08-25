@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
-from code.globals import batch_duration, n_hours
+from code.globals import batch_duration, n_hours, pri
 
 
 def start_driver(headless):
@@ -108,5 +108,5 @@ def get_last_episode_data(driver, minute='m'):
 
 
     except Exception as e:
-        print(e)
+        pri(e)
         return "", "", "", ""

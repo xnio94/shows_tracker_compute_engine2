@@ -73,11 +73,12 @@ def get_shows_from_firestore():
         return []
 
 
-def process(episode_link, title, poster):
+def process(episode_link, title, poster, show):
     pri(f"processing episode : {episode_link}")
     video_url, audio_url = get_video(episode_link)
     transcript = transcribe_audio(audio_url)
-    send_email(episode_link, transcript, title, poster)
+    send_email(episode_link, transcript, title, poster, "xnio94@gmail.com", show)
+    send_email(episode_link, transcript, title, poster, "editing@ghost.video", show)
     # send_email(text, title, poster)
 
 # shows = [
@@ -131,7 +132,7 @@ while True:
             pri(f"episode_link = {episode_link}")
             if episode_link not in (current_batch + last_batch):
                 current_batch.append(episode_link)
-                process(episode_link, title, poster)
+                process(episode_link, title, poster, show)
         pri("################")
 
     pri("################")

@@ -3,10 +3,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 sender_email = "productioniles@gmail.com"
-receiver_email = "xnio94@gmail.com"
 password = "duvzyggazesiwbiv"
 
-def send_email(link, transcript, title, poster):
+def send_email(link, transcript, title, poster, receiver_email, show):
 
     # Setup the MIME (Multipurpose Internet Mail Extensions)
     message = MIMEMultipart("alternative")
@@ -18,6 +17,8 @@ def send_email(link, transcript, title, poster):
     text = f"""\
   Hello, a new episode is posted!
 
+  show : {show}
+  
   link : {link}
 
   episode title : {title} 
@@ -31,6 +32,7 @@ def send_email(link, transcript, title, poster):
   <html>
     <body>
       <p>Hello, a new episode is posted!<br><br>
+        show : {show}<br><br>
         link : {link}<br><br>
         episode title : {title}<br><br>
         transcript : {transcript}<br><br>

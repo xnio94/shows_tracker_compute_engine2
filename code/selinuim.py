@@ -40,19 +40,37 @@ def scroll_to_end(driver):
 
     # Loop until you've reached the end of the list
     last_height = get_scroll_height()
-
     while True:
         # Scroll to the bottom of the list
         driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight);")
 
-        # Wait for any potential new content to load
-        time.sleep(2) # This may need to be adjusted based on the specific site you're working with
+        stop = False
+        n=6
+        for i in range(n+1):
+            time.sleep(1)
+            new_height = get_scroll_height()
+            if new_height != last_height:
+                break
+            elif i == n:
+                stop = True
 
-        # Calculate new scroll height and compare with last scroll height
-        new_height = get_scroll_height()
-        if new_height == last_height:
+        if stop:
             break
+
         last_height = new_height
+
+    # while True:
+    #     # Scroll to the bottom of the list
+    #     driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight);")
+    #
+    #     # Wait for any potential new content to load
+    #     time.sleep(2) # This may need to be adjusted based on the specific site you're working with
+    #
+    #     # Calculate new scroll height and compare with last scroll height
+    #     new_height = get_scroll_height()
+    #     if new_height == last_height:
+    #         break
+    #     last_height = new_height
 
 def get_last_episode_data2(driver):
     try:

@@ -9,7 +9,7 @@ def send_email(link, transcript, title, poster, receiver_email, show):
 
     # Setup the MIME (Multipurpose Internet Mail Extensions)
     message = MIMEMultipart("alternative")
-    message["Subject"] = "Snapchat Show Tracker"
+    message["Subject"] = "Snapchat Show Tracker - new episode"
     message["From"] = sender_email
     message["To"] = receiver_email
 

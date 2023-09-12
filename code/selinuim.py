@@ -116,9 +116,11 @@ def get_last_episode_data(driver, minute='m'):
         if new:
             last_element.click()
             time.sleep(2)
-            poster = driver.find_element(By.CLASS_NAME, "StoryWebPlayer_videoPlayer__ISmZ6")
-            poster = poster.get_attribute("poster")
-            return driver.current_url, title, poster, time_posted
+            thumbnail = last_element.find_element(By.CSS_SELECTOR, 'img.StoryListTile_thumbnail__NYD_G')
+            thumbnail = thumbnail.get_attribute("src")
+            # poster = driver.find_element(By.CLASS_NAME, "StoryWebPlayer_videoPlayer__ISmZ6")
+            # poster = poster.get_attribute("poster")
+            return driver.current_url, title, thumbnail, time_posted
         else:
             return "", title, "", time_posted
         ################################################

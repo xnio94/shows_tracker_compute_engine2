@@ -111,7 +111,8 @@ def get_last_episode_data(driver, minute='m'):
         new = (
                 (time_posted[0].isdigit() and time_posted[1] == 'm') or
                 (time_posted[0].isdigit() and time_posted[1].isdigit() and time_posted[2] == 'm') or
-                (time_posted[0].isdigit() and int(time_posted[0]) < n_hours and time_posted[1] == 'h')
+                (time_posted[0].isdigit() and time_posted[1] == 'h') or
+                (time_posted[0].isdigit() and time_posted[1].isdigit() and int(time_posted[0]) == 1 and int(time_posted[1]) < n_hours-10 and time_posted[2] == 'h')
         )
         if new:
             last_element.click()

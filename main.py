@@ -108,6 +108,8 @@ def process(episode_link, title, poster, show):
 #
 
 shows = get_shows_from_firestore()
+print(shows)
+print(len(shows))
 
 current_batch = []
 last_batch = []
@@ -118,7 +120,11 @@ while True:
     i = (i+1) % 10000
     pri(f"i = {i}")
     # send_email("episode_link", "transcript", "title", "poster")
-    driver = start_driver(headless=True)
+    try:
+        driver = start_driver(headless=True)
+    except Exception as e:
+        pri(e)
+    pri("ok7")
     shows = get_shows_from_firestore()
     pri("start batch")
     pri(len(shows))

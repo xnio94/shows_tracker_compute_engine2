@@ -28,10 +28,10 @@ def start_driver(headless):
     options.add_argument("disable-infobars")
     options.add_argument("--disable-extensions")
     options.add_argument("--disable-software-rasterizer")
+    options.add_argument("--remote-debugging-port=9222")
 
 
-
-    # options.add_argument("--window-size=800,450")
+# options.add_argument("--window-size=800,450")
     driver = webdriver.Chrome(options=options, executable_path="/usr/bin/chromedriver")
     return driver
 

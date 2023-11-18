@@ -97,6 +97,7 @@ def get_last_episode_data2(driver):
 
 def get_last_episode_data(driver, minute='m'):
     try:
+        print("get_last_episode_data")
         elements = driver.find_elements(By.CLASS_NAME, 'StoryListTile_container__IjFbs')
         last_element = elements[-1]
         time_posted = last_element.find_element(By.CSS_SELECTOR, '.StoryListTile_storyInfo__XnOTC.StoryListTile_oneLineTruncation__llTh3')
@@ -119,7 +120,15 @@ def get_last_episode_data(driver, minute='m'):
                 (time_posted[0].isdigit() and time_posted[1].isdigit() and int(time_posted[0]) == 1 and int(time_posted[1]) <= n_hours-10 and time_posted[2] == 'h')
         )
         if new:
+            print("new")
+            try:
+                # element with class = ToastBodyExpanded_crossIcon__XFolm
+                elm = driver.find_element(By.CLASS_NAME, 'ToastBodyExpanded_crossIcon__XFolm')
+                elm.click()
+            except Exception as e:
+                pri(e)
             last_element.click()
+            print("new")
             time.sleep(2)
             thumbnail = last_element.find_element(By.CSS_SELECTOR, 'img.StoryListTile_thumbnail__NYD_G')
             thumbnail = thumbnail.get_attribute("src")

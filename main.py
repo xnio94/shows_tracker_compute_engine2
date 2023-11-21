@@ -78,8 +78,8 @@ def process(episode_link, title, poster, show):
     video_url, audio_url = get_video(episode_link)
     transcript = transcribe_audio(audio_url)
     send_email(episode_link, transcript, title, poster, "xnio94@gmail.com", show)
-    # send_email(episode_link, transcript, title, poster, "editing@ghost.video", show)
-    # send_email(episode_link, transcript, title, poster, "grayhound171@gmail.com", show)
+    send_email(episode_link, transcript, title, poster, "editing@ghost.video", show)
+    send_email(episode_link, transcript, title, poster, "grayhound171@gmail.com", show)
     # send_email(text, title, poster)
 
 # shows = [
